@@ -461,8 +461,8 @@ https://templatemo.com/tm-537-art-factory
                     }).then(json => {
 
                         for (var i = 0; i < 5; i++) {
-                            console.log(json['q' + i.toString()]);
-                            document.querySelector('.fake__input').innerText = json['q' + i.toString()] + "_t";
+                            console.log(json[i.toString()]);
+                            document.querySelector('.fake__input').innerText = json[i.toString()] + "_t";
                             document.getElementById("bb").click();
                         }
                     }).catch(error => {
