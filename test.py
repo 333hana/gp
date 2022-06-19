@@ -64,7 +64,7 @@ class Posture():
         global session_end
         session_end = True
         self.video_capture.close()
-        return None
+
 
 
 

@@ -343,7 +343,7 @@
         function transcript() {
             let SpeechRecognition = window.webkitSpeechRecognition;
             let recognition = new SpeechRecognition();
-            recognition.continuous = true;
+            //recognition.continuous = true;
             recognition.start();
             let current;
             recognition.onresult = function(event) {
@@ -368,6 +368,7 @@
 
         function listen() {
             start_speech()
+            transcript()
             navigator.mediaDevices.getUserMedia({
                 audio: true
             }).then((stream) => {
@@ -387,7 +388,6 @@
                 function Ask() {
                     //stop_speech()
                     pause_listening();
-                    transcript()
                     q = document.getElementById(qs[q_index]);
                     q.addEventListener('ended', listen, false);
                     console.log(qs[q_index]);
