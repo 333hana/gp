@@ -143,19 +143,19 @@ def get_js():
     #5leena hena n compute kol so2al q eih text
     session['q0'] = QS_TEXT[qs_dict['0']]
     print(session['q0'])
-    qs_dict['q0']=session['q0']
+    qs_dict['0']=session['q0']
     session['q1'] = QS_TEXT[qs_dict['1']]
     print(session['q1'])
-    qs_dict['q1']=session['q1']
+    qs_dict['1']=session['q1']
     session['q2'] = QS_TEXT[qs_dict['2']]
     print(session['q2'])
-    qs_dict['q2']=session['q2']
+    qs_dict['2']=session['q2']
     session['q3'] = QS_TEXT[qs_dict['3']]
     print(session['q3'])
-    qs_dict['q3']=session['q3']
+    qs_dict['3']=session['q3']
     session['q4'] = QS_TEXT[qs_dict['4']]
     print(session['q4'])
-    qs_dict['q4']=session['q4']
+    qs_dict['4']=session['q4']
     return qs_dict
 
 @app.route("/speech", methods=['POST'])   
@@ -237,12 +237,13 @@ def gdownload_report():
     session['mins'] = res['session time']/60
     session['contact']=res['eye contact']
     session['blinks'] = res['blinks']
-    session['slouch'] = count
-    q2r ={'0':session['q0'],'1':session['q1'],'2':session['q2'],'3':session['q3'],'4':session['q4']}
-    write_results(q2r,session['uid'],session['contact'],session['mins'],session['blinks'] ,session['slouch'])
+    session['slouch'] = sit.count
+    print("beforesend",str(session['slouch']))
+    write_results(qs_dict,session['uid'],session['contact'],session['mins'],session['blinks'] ,session['slouch'])
+    print("aftersend",str(session['slouch']))
     cap.close()
     print("user id from dr:",session['uid'])
-    path= parent_dir+session['uid']+"/r.pdf"#path of report
+    path= parent_dir+session['uid']+"/r"+session['uid']+".pdf"#path of report
     return send_file(path,as_attachment=True)
 
 if __name__ == '__main__':

@@ -175,7 +175,7 @@ def stop_AVrecording(filename):
 		subprocess.call(cmd, shell=True)
 	
 		print ("Muxing")
-		cmd = "ffmpeg -ac 2 -channel_layout stereo -i " + filename+ "/temp_audio.wav -i " + filename+ "/temp_video2.avi -pix_fmt yuv420p " + filename+ "/final.avi"
+		cmd = "ffmpeg -ac 2 -channel_layout stereo -i " + filename+ "/temp_audio.wav -i " + filename+ "/temp_video2.avi -pix_fmt yuv420p " + filename+ "/final"+filename+".avi"
 		subprocess.call(cmd, shell=True)
 	
 	else:

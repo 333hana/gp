@@ -15,6 +15,7 @@ class Posture():
     def __init__(self,cap):
         self.video_capture = cap
         self.faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+        self.count = 0
         
 
     def startPost(self,uid):
@@ -49,9 +50,8 @@ class Posture():
                     print("No slouching detected")
             global t_last
             if slouch == True and time.time() - t_last > 10:
-                global count
-                cv2.imwrite(uid+"/frame%d.jpg" % count, frame)
-                count  +=  1
+                cv2.imwrite(uid+"/frame%d.jpg" % self.count, frame)
+                self.count  +=  1
                 #pymsgbox.alert('Stop Slouching!', 'PostureFix')
                 t_last = time.time()
 
@@ -61,10 +61,11 @@ class Posture():
         print("outofpostwhile")    
 
     def stopPost(self):
-        global session_end,count
+        global session_end
         session_end = True
-        print("you slouched "+count +" times.")
         self.video_capture.close()
+        return None
+
 
 
 if __name__ == '__main__':
